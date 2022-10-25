@@ -16,7 +16,7 @@ jobs:
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3
         with:
-          version: v1.45.2
+          version: v1.50.1
 
       - name: Check fmt
         run: if [ "$(gofmt -s -l . | wc -l)" -gt 0  ]; then exit 1; fi
