@@ -6,6 +6,7 @@ jobs:
   lint:
     name: lint
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/setup-go@v5
         with:
@@ -22,6 +23,7 @@ jobs:
         run: if [ "$(gofmt -s -l . | wc -l)" -gt 0  ]; then exit 1; fi
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
 
