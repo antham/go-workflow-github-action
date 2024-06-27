@@ -1,6 +1,10 @@
 name: Create the release
 
-on: workflow_call
+on:
+  workflow_call:
+    secrets:
+      HOMEBREW_REPO_KEY:
+        required: true
 
 jobs:
   create-release:
@@ -25,6 +29,7 @@ jobs:
           args: release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HOMEBREW_REPO_KEY: ${{ secrets.HOMEBREW_REPO_KEY }}
 
       - name: Install chyle
         run: go install github.com/antham/chyle@latest
