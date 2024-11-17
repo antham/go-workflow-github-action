@@ -4,9 +4,9 @@ on:
   workflow_call:
     secrets:
       HOMEBREW_REPO_KEY:
-        required: true
+        required: false
       ARCHLINUX_REPO_KEY:
-        required: true
+        required: false
 
 jobs:
   create-release:
