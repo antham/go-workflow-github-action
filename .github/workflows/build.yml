@@ -11,24 +11,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint:
-    name: lint
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/setup-go@v5
-        with:
-          go-version: stable
-
-      - uses: actions/checkout@v4
-
-      - name: golangci-lint
-        uses: golangci/golangci-lint-action@v6
-        with:
-          version: latest
-
-      - name: Check fmt
-        run: if [ "$(gofmt -s -l . | wc -l)" -gt 0  ]; then exit 1; fi
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -52,6 +34,11 @@ jobs:
           if [[ -f "setup-tests.sh" ]]; then
             ./setup-tests.sh
           fi
+
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v6
+        with:
+          version: latest
 
       - name: Test
         run: |
